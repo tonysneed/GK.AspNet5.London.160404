@@ -10,3 +10,10 @@ Class Repository on GitHub:
 http://github.com/tonysneed/
 GK.AspNet5.London.160404
 
+DevWeek London 2016:
+http://devweek.com/speakers#anthony-sneed
+
+Open Source Frameworks:
+Trackable Entities: http://trackableentities.github.io
+Simple MVVM Toolkit: https://simplemvvmtoolkit.codeplex.com
+
