@@ -1,2 +1,8 @@
 ASP.NET 5 Notes
 
+Installations for ASP.NET 5 / Core:
+http://get.asp.net
+
+ASP.NET vNext Weekly Community Standup on You Tube:
+http://live.asp.net
+
