@@ -1,0 +1,12 @@
+Global Knowledge
+Essential ASP.NET 5 and MVC 6
+
+Tony Sneed
+Email: tony.sneed@icloud.com
+Blog: blog.tonysneed.com
+Twitter: @tonysneed
+
+Class Repository on GitHub:
+http://github.com/tonysneed/
+GK.AspNet5.London.160404
+
