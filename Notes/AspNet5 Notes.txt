@@ -6,3 +6,10 @@ http://get.asp.net
 ASP.NET vNext Weekly Community Standup on You Tube:
 http://live.asp.net
 
+Locate NuGet package for a class or interface:
+https://packagesearch.azurewebsites.net
+
+Cmder:
+Blog post: http://blog.tonysneed.com/2015/01/31/cmder-making-the-command-line-your-best-friend/
+Install: https://github.com/cmderdev/cmder
+
