@@ -7,6 +7,7 @@ using Microsoft.AspNet.Hosting;
 using Microsoft.AspNet.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.OptionsModel;
 
 namespace HelloConfig
 {
@@ -23,15 +24,19 @@ namespace HelloConfig
                 builder.AddJsonFile("appsettings.prod.json");
             }
             builder.AddEnvironmentVariables();
+            builder.AddUserSecrets();
             Configuration = builder.Build();
         }
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddOptions();
+            services.Configure<Copyright>(Configuration.GetSection("copyright"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app)
+        public void Configure(IApplicationBuilder app, 
+            IOptions<Copyright> copyrightOpts)
         {
             app.UseIISPlatformHandler();
 
@@ -39,8 +44,12 @@ namespace HelloConfig
             {
                 await context.Response.WriteAsync("Hello World!");
 
-                int year = int.Parse(Configuration.GetSection("copyright:year").Value);
-                string company = Configuration.GetSection("copyright:company").Value;
+                //IConfigurationSection copyright = Configuration.GetSection("copyright");
+                //int year = int.Parse(Configuration.GetSection("copyright:year").Value);
+                //string company = Configuration.GetSection("copyright:company").Value;
+
+                var year = copyrightOpts.Value.Year;
+                var company = copyrightOpts.Value.Company;
 
                 await context.Response.WriteAsync($"Copyright {year} {company}");
             });
