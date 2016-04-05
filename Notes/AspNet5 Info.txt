@@ -10,6 +10,15 @@ Class Repository on GitHub:
 http://github.com/tonysneed/
 GK.AspNet5.London.160404
 
+Virtual Machines for Labs:
+Username: Student
+Password: DmAzP&55word$
+Use Remote Desktop to connect
+DMAZ-01.cloudapp.net
+DMAZ-02.cloudapp.net
+DMAZ-03.cloudapp.net
+DMAZ-04.cloudapp.net
+
 DevWeek London 2016:
 http://devweek.com/speakers#anthony-sneed
 
