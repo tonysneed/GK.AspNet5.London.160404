@@ -1,0 +1,19 @@
+﻿@model IEnumerable<HelloMvcWithDI.Entities.Product>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Products</title>
+</head>
+<body>
+    <h1>Products</h1>
+<ul>
+    @foreach (var product in Model)
+    {
+        <li>
+            @product.Id @product.ProductName @product.Price
+        </li>
+    }
+</ul>
+</body>
+</html>

@@ -1,0 +1,54 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{7FEEAF77-2CFD-43A5-A647-69CC57AA2213}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7E37B1C0-8E81-4367-8194-5FDAB7FC0701}"
+	ProjectSection(SolutionItems) = preProject
+		global.json = global.json
+		ReadMe.md = ReadMe.md
+	EndProjectSection
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "HelloMvcWithDI", "src\HelloMvcWithDI\HelloMvcWithDI.xproj", "{95726B27-611A-4300-AE14-0B620DC65531}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "HelloMvcWithDI.Patterns", "src\HelloMvcWithDI.Patterns\HelloMvcWithDI.Patterns.xproj", "{0E9E652B-FA16-41DB-8D10-F06FD0D42E14}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "HelloMvcWithDI.Entities", "src\HelloMvcWithDI.Entities\HelloMvcWithDI.Entities.xproj", "{BBC4E7A6-5782-49A8-8E14-0D70CFFA24D6}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "HelloMvcWithDI.Patterns.EF", "src\HelloMvcWithDI.Patterns.EF\HelloMvcWithDI.Patterns.EF.xproj", "{3A5CED9D-8694-4D13-9041-A4156782E63E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{95726B27-611A-4300-AE14-0B620DC65531}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95726B27-611A-4300-AE14-0B620DC65531}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95726B27-611A-4300-AE14-0B620DC65531}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95726B27-611A-4300-AE14-0B620DC65531}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E9E652B-FA16-41DB-8D10-F06FD0D42E14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E9E652B-FA16-41DB-8D10-F06FD0D42E14}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E9E652B-FA16-41DB-8D10-F06FD0D42E14}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E9E652B-FA16-41DB-8D10-F06FD0D42E14}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BBC4E7A6-5782-49A8-8E14-0D70CFFA24D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBC4E7A6-5782-49A8-8E14-0D70CFFA24D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBC4E7A6-5782-49A8-8E14-0D70CFFA24D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBC4E7A6-5782-49A8-8E14-0D70CFFA24D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A5CED9D-8694-4D13-9041-A4156782E63E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A5CED9D-8694-4D13-9041-A4156782E63E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A5CED9D-8694-4D13-9041-A4156782E63E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A5CED9D-8694-4D13-9041-A4156782E63E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{95726B27-611A-4300-AE14-0B620DC65531} = {7FEEAF77-2CFD-43A5-A647-69CC57AA2213}
+		{0E9E652B-FA16-41DB-8D10-F06FD0D42E14} = {7FEEAF77-2CFD-43A5-A647-69CC57AA2213}
+		{BBC4E7A6-5782-49A8-8E14-0D70CFFA24D6} = {7FEEAF77-2CFD-43A5-A647-69CC57AA2213}
+		{3A5CED9D-8694-4D13-9041-A4156782E63E} = {7FEEAF77-2CFD-43A5-A647-69CC57AA2213}
+	EndGlobalSection
+EndGlobal
