@@ -1,0 +1,22 @@
+﻿@model HelloMvc.Models.CustomerViewModel
+
+<!DOCTYPE html>
+<html>
+<body>
+    <h1>Hello from index.cshtml</h1>
+<div>The time is @DateTime.Now</div>
+
+@*@{ var name = ViewData["name"];}*@
+
+@if (DateTime.Now.Hour < 12)
+    {
+        @*<div>Good morning @name @ViewData["lastname"]!</div>*@
+        <div>Good morning @Model.FirstName @Model.LastName</div>
+    }
+    else
+    {
+        @*<div>Good afternoon @name!</div>*@
+    <div>Good afternoon @Model.FirstName @Model.LastName</div>
+}
+</body>
+</html>
