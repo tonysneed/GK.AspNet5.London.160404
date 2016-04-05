@@ -1,0 +1,22 @@
+﻿@model HelloRazor.Models.CompanyViewModel
+@inject Microsoft.AspNet.Hosting.IHostingEnvironment Host
+
+<!DOCTYPE html>
+<html>
+<body>
+@{
+    var type = typeof(CompanyViewModel);
+    PropertyInfo[] properties = type.GetProperties();
+}
+<h1>@Model.CompanyName</h1>
+<h2>Model type: type.FullName</h2>
+<ul>
+    @foreach (var prop in properties)
+    {
+        <li>@prop.Name</li>
+    }
+</ul>
+<h3>Environment: @Host.EnvironmentName</h3>
+<img src="~/images/logo.jpg"/>
+</body>
+</html>
