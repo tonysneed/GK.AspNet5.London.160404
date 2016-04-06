@@ -10,14 +10,15 @@
     ```csharp
     public interface IProductRepository
     {
-    Task<IEnumerable<Product>> GetProducts();
+        Task<IEnumerable<Product>> GetProducts();
 
-    Task<Product> GetProduct(int id);
+        Task<Product> GetProduct(int id);
     }
     ```
 
 3. Add a Patterns.EF class libary project (vNext package)
-  - Add dependency to project.json: EntityFramework.SqlServer
+  - Add dependency to project.json: EntityFramework.MicrosoftSqlServer
+  - Add references to both the Entities and Patterns projects
   - Add a `ProductDb` class : `DbContext`
     + Add Products property of type `DbSet<Product>`
     + Add a ctor accepting `DbContextOptions` and passing
@@ -45,19 +46,73 @@
     + Add ctor accepting `ProductsDb`
     + Use EF to query the database
     + Use async / await
+    
+    ```csharp
+    public class ProductRepository : IProductRepository
+    {
+        private readonly ProductsDb _dbContext;
+
+        public ProductRepository(ProductsDb dbContext)
+        {
+            _dbContext = dbContext;
+        }
+
+        public async Task<IEnumerable<Product>> GetProducts()
+        {
+            var products = await _dbContext.Products
+                .OrderBy(e => e.ProductName)
+                .ToListAsync();
+            return products;
+        }
+
+        public async Task<Product> GetProduct(int id)
+        {
+            var product = await _dbContext.Products
+                .SingleOrDefaultAsync(e => e.Id == id);
+            return product;
+        }
+    }
+    ```    
 
 5. In main web project, add code to `Startup.ConfigureServices`
    to use Entity Framework with Sql Server.
-    - Add dependency to project.json: EntityFramework.SqlServer
+    - Add dependency to project.json: EntityFramework.MicrosoftSqlServer
     - Add appsettings.json file with connection string
-    - Add IConfiguration property to Startup
+      + Add a new item to the web project, select ASP.NET Configuration File
+      + Change the keys to match:
+      
+    ```json
+    {
+        "Data": {
+            "ProductsDb": {
+                "Connection": "Server=(localdb)\\MSSQLLocalDB;Database=ProductsDb;Trusted_Connection=True;"
+            }
+        }
+    }
+    ```
+      
+    - Add a Configuration property of type IConfiguration to Startup
     - Add ctor to Startup with code that set Configuration
-    using a new ConfigurationBuilder
-    + Call AddJsonFile
-    - In ConfigureServices method, call Configuration.GetSection
-    to get the connection string.
+      using a new ConfigurationBuilder
+      + Call AddJsonFile
 
-6. In `Startup.ConfigureServices` register EF, Sql, DbContext
+    - In ConfigureServices method, call Configuration.GetSection
+      to get the connection string.
+    
+        ```csharp
+        public class Startup
+        {
+            public IConfiguration Configuration { get; set; }
+
+            public Startup()
+            {
+                var builder = new ConfigurationBuilder()
+                    .AddJsonFile("appsettings.json");
+                Configuration = builder.Build();
+            }
+        ```  
+
+6. In `Startup.ConfigureServices` register Mvc, EF, Sql, DbContext
 
     ```csharp
     var connection = Configuration.GetSection("Data:ProductsDb:Connection").Value;
@@ -84,7 +139,7 @@
     },
     ```
 
-  - Open a command prompt to create the database
+  - Open a command prompt in the main project directory to create the database
 
     ```shell
     dnx ef database update -c ProductsDb

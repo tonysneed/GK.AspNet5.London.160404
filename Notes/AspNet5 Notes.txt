@@ -13,3 +13,6 @@ Cmder:
 Blog post: http://blog.tonysneed.com/2015/01/31/cmder-making-the-command-line-your-best-friend/
 Install: https://github.com/cmderdev/cmder
 
+Using ASP.NET 5 with EF 6:
+http://blog.tonysneed.com/2016/01/22/ef6-asp-net-core-mvc6/
+
