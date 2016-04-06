@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{8F608408-57D5-47D4-9E78-F5CBA427AD79}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1EE40337-7FB7-4604-9099-71D91E6F4902}"
+	ProjectSection(SolutionItems) = preProject
+		global.json = global.json
+	EndProjectSection
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "HelloTagHelpers", "src\HelloTagHelpers\HelloTagHelpers.xproj", "{F81E12E1-DA1D-4C8C-BC81-491D8C694377}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F81E12E1-DA1D-4C8C-BC81-491D8C694377}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F81E12E1-DA1D-4C8C-BC81-491D8C694377}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F81E12E1-DA1D-4C8C-BC81-491D8C694377}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F81E12E1-DA1D-4C8C-BC81-491D8C694377}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F81E12E1-DA1D-4C8C-BC81-491D8C694377} = {8F608408-57D5-47D4-9E78-F5CBA427AD79}
+	EndGlobalSection
+EndGlobal
