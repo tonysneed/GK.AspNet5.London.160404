@@ -1,5 +1,0 @@
-Installing the VS Template:
-
-Copy the zip file here:
-Documents\Visual Studio 2015\Templates\ProjectTemplates\Visual C#
-
