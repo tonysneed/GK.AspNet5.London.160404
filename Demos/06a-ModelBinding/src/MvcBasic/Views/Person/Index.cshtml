@@ -1,0 +1,23 @@
+﻿@using MvcBasic.ViewModels
+@model MvcBasic.ViewModels.DelegateViewModel
+@addTagHelper "*, Microsoft.AspNet.Mvc.TagHelpers"
+
+<!DOCTYPE html>
+<html>
+<body>
+    <h1>Person</h1>
+    <form asp-action="Update">
+        <fieldset>
+            <label asp-for="@Model.Person.Name">Name:</label>
+            <input type="text" asp-for="@Model.Person.Name"/>
+            <label asp-for="@Model.Person.Age">Age:</label>
+            <input type="text" asp-for="@Model.Person.Age"/>
+            <select type="text" asp-for="@Model.Course" 
+                    asp-items="@Model.Courses">
+                <option value="">--select--</option>
+            </select>
+        </fieldset>
+        <button>Submit</button>
+    </form>
+</body>
+</html>
