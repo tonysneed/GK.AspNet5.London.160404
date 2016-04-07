@@ -1,0 +1,26 @@
+﻿{
+  "version": "1.0.0-*",
+  "description": "HelloMvcWithDI.Tests Class Library",
+  "authors": [ "Tony" ],
+  "tags": [ "" ],
+  "projectUrl": "",
+  "licenseUrl": "",
+
+  "dependencies": {
+    "HelloMvcWithDI": "1.0.0-*",
+    "HelloMvcWithDI.Entities": "1.0.0-*",
+    "HelloMvcWithDI.Patterns": "1.0.0-*",
+    "HelloMvcWithDI.Patterns.EF": "1.0.0-*",
+    "xunit": "2.1.0",
+    "xunit.runner.dnx": "2.1.0-rc1-build204",
+    "Microsoft.AspNet.Mvc":"6.0.0-rc1-final" 
+  },
+
+  "commands": {
+    "test": "xunit.runner.dnx"
+  },
+
+  "frameworks": {
+    "dnx451": { }
+  }
+}

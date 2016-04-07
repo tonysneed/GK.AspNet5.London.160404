@@ -25,7 +25,7 @@
       then to the base ctor
     + Override `OnModelCreating` to configure the Product table
 
-    ```charp
+    ```csharp
     public class ProductsDb : DbContext
     {
         public ProductsDb(DbContextOptions options) :
@@ -99,18 +99,18 @@
     - In ConfigureServices method, call Configuration.GetSection
       to get the connection string.
     
-        ```csharp
-        public class Startup
-        {
-            public IConfiguration Configuration { get; set; }
+    ```csharp
+    public class Startup
+    {
+        public IConfiguration Configuration { get; set; }
 
-            public Startup()
-            {
-                var builder = new ConfigurationBuilder()
-                    .AddJsonFile("appsettings.json");
-                Configuration = builder.Build();
-            }
-        ```  
+        public Startup()
+        {
+            var builder = new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json");
+            Configuration = builder.Build();
+        }
+    ```  
 
 6. In `Startup.ConfigureServices` register Mvc, EF, Sql, DbContext
 
@@ -161,4 +161,86 @@
     + Connect using (localdb)\MSSQLLocalDB
     + Poppulate the database
 
-9. Testing
+9. Add a new Class Library project (vNext) to the src folder in the solution.
+  - Change frameworks to include just dnx451
+  - Add the following dependencies:
+    + "Microsoft.AspNet.Mvc":"6.0.0-rc1-final"
+    + "xunit": "2.1.0"
+    + "xunit.runner.dnx": "2.1.0-rc1-build204"
+  - Add references to all of the other projects in the solution
+  - Add a test command:
+    + "test": "xunit.runner.dnx"
+
+10. Add a FakeProductRepository class which implements IProductRepository
+  - Create an in-memory list of products
+
+    ```csharp
+    public class FakeProductRepository : IProductRepository
+    {
+        private List<Product> _products = new List<Product>
+        {
+            new Product
+            {
+                Id = 1,
+                ProductName = "Espresso",
+                Price = 10
+            },
+            new Product
+            {
+                Id = 2,
+                ProductName = "Capuccino",
+                Price = 20
+            },
+            new Product
+            {
+                Id = 3,
+                ProductName = "Latte",
+                Price = 30
+            },
+        };
+
+        public async Task<IEnumerable<Product>> GetProducts()
+        {
+            var products = await Task.FromResult(_products);
+            return products;
+        }
+
+        public async Task<Product> GetProduct(int id)
+        {
+            return await Task.FromResult(_products[id - 1]);
+        }
+    }
+    ```
+
+11. Add a HomeControllerTests class
+  - Add a public `Index_action_should_return_products` method returning `void`
+  - Adorn the method with a `[Fact]` attribute
+  - Create a new ProductsController, passing a FakeProductRepository
+  - Invoke the Index action
+  - Assert that the result is a ViewResult
+
+    ```csharp
+    public class HomeControllerTests
+    {
+        [Fact]
+        public void Index_action_should_return_products()
+        {
+            // Arrange
+            IProductRepository repo = new FakeProductRepository();
+            var controller = new ProductsController(repo);
+
+            // Act
+            IActionResult result = controller.Index();
+
+            // Assert
+            Assert.IsType<ViewResult>(result);
+        }
+    }
+    ```
+
+12. Run the test
+  - Open the Test Explorer (Test, Other Windows)
+  - Building the solution should reveal the test
+  - Run and/or debug the test
+  - Open a command prompt and execute the tests there
+    + dnx test

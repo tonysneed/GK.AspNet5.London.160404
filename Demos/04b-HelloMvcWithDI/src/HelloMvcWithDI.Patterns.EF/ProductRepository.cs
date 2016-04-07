@@ -15,7 +15,7 @@ namespace HelloMvcWithDI.Patterns.EF
             _dbContext = dbContext;
         }
 
-        public async Task<IEnumerable<Product>> GetProducts()
+        public async Task<IEnumerable<Product>> GetProductsAsync()
         {
             var products = await _dbContext.Products
                 .OrderBy(e => e.ProductName)
@@ -23,7 +23,7 @@ namespace HelloMvcWithDI.Patterns.EF
             return products;
         }
 
-        public async Task<Product> GetProduct(int id)
+        public async Task<Product> GetProductAsync(int id)
         {
             var product = await _dbContext.Products
                 .SingleOrDefaultAsync(e => e.Id == id);

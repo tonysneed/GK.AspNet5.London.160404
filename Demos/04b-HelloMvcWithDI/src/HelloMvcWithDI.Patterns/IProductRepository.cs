@@ -6,8 +6,8 @@ namespace HelloMvcWithDI.Patterns
 {
     public interface IProductRepository
     {
-        Task<IEnumerable<Product>> GetProducts();
+        Task<IEnumerable<Product>> GetProductsAsync();
 
-        Task<Product> GetProduct(int id);
+        Task<Product> GetProductAsync(int id);
     }
 }

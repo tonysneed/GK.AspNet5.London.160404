@@ -1,4 +1,5 @@
-﻿using HelloMvcWithDI.Patterns;
+﻿using System.Threading.Tasks;
+using HelloMvcWithDI.Patterns;
 using Microsoft.AspNet.Mvc;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
@@ -17,11 +18,10 @@ namespace HelloMvcWithDI.Controllers
 
         // GET: /<controller>/
         [Route("[action]"), Route("")]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var products = _productRepository.GetProducts();
-            //return View(products);
-            return Json(products);
+            var products = await _productRepository.GetProductsAsync();
+            return View(products);
         }
     }
 }
