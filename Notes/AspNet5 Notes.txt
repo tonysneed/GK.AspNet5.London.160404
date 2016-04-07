@@ -40,3 +40,6 @@ https://blogs.msdn.microsoft.com/webdev/
 Dependency Injection in ASP.NET Core:
 https://blogs.msdn.microsoft.com/webdev/2016/03/28/dependency-injection-in-asp-net-core/
 
+Async with EF 6 and Web API:
+http://blog.tonysneed.com/2013/03/22/async-services-asp-net-web-api-entity-framework-6/
+
