@@ -29,3 +29,14 @@ Open admin prompt: choco install cmder
 Interactive Git Tutorial:
 https://try.github.io
 
+Weekly ASP.NET Core Community Standups - You Tube videos:
+https://live.asp.net/
+
+Microsoft WebDev Blog:
+- Includes notes from the weekly standup meetings
+- Includes links to Build session videos
+https://blogs.msdn.microsoft.com/webdev/
+
+Dependency Injection in ASP.NET Core:
+https://blogs.msdn.microsoft.com/webdev/2016/03/28/dependency-injection-in-asp-net-core/
+
