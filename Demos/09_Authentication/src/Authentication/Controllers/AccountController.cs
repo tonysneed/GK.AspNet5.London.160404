@@ -1,0 +1,63 @@
+﻿using System.Linq;
+using System.Security.Claims;
+using System.Threading.Tasks;
+using Authentication.Models;
+using Microsoft.AspNet.Authorization;
+using Microsoft.AspNet.Mvc;
+
+namespace Authentication.Controllers
+{
+    [AllowAnonymous]
+    public class AccountController : Controller
+    {
+        public IActionResult Login(string returnUrl)
+        {
+            var vm = new LoginViewModel()
+            {
+                ReturnUrl = returnUrl,
+                Providers = HttpContext.Authentication
+                    .GetAuthenticationSchemes()
+                    .Where(x => !string.IsNullOrWhiteSpace(x.DisplayName))
+            };
+            return View("Login", vm);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Login(LoginViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                // Validate the user credentials
+                // Match username and password - for demo purposes only
+                if (model.Username != model.Password)
+                {
+                    ModelState.AddModelError("", "Invalid username or password");
+                }
+
+                // Create subject and name claims
+                var claims = new[]
+                {
+                    new Claim("sub", model.Username),
+                    new Claim("name", model.Username),
+                };
+
+                // Create claims identity and principle
+                var ci = new ClaimsIdentity(claims, "password", "name", "role");
+                var cp = new ClaimsPrincipal(ci);
+
+                // Sign in the user using the claims principle
+                await HttpContext.Authentication.SignInAsync("Cookies", cp);
+
+                // Redirect to the return url if present,
+                // otherwise redirect to root
+                if (model.ReturnUrl != null && Url.IsLocalUrl(model.ReturnUrl))
+                {
+                    return Redirect(model.ReturnUrl);
+                }
+                return Redirect("~/");
+            }
+
+            return View("Login", model);
+        }
+    }
+}
