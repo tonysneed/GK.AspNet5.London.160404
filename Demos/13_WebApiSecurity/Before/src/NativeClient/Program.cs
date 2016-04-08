@@ -71,7 +71,7 @@ namespace NativeClient
 
             client.SetBearerToken(accessToken);
 
-            var response = await client.GetAsync("identity");
+            var response = await client.GetAsync("secure");
             response.EnsureSuccessStatusCode();
             var json = await response.Content.ReadAsStringAsync();
             var claims = JArray.Parse(json);
