@@ -1,4 +1,6 @@
-﻿using System;
+﻿
+using System;
+using Authentication.Policies;
 using Microsoft.AspNet.Authorization;
 using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Hosting;
@@ -16,6 +18,7 @@ namespace Authentication
             // Require authenticated users
             var policy = new AuthorizationPolicyBuilder()
                 .RequireAuthenticatedUser()
+                //.AddRequirements(new SalesRoleRequirement())
                 .Build();
 
             services.AddAuthorization(options =>
@@ -34,6 +37,9 @@ namespace Authentication
                 // Add global auth filter
                 options.Filters.Add(new AuthorizeFilter(policy));
             });
+
+            // Add authorization handlers
+            services.AddTransient<IAuthorizationHandler, MustBeFromSameLocationToEditHandler>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

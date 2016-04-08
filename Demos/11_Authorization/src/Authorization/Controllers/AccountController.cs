@@ -48,6 +48,11 @@ namespace Authentication.Controllers
                 if (model.Username.ToUpper() == "BOB")
                 {
                     claims.Add(new Claim("role", "Sales"));
+                    claims.Add(new Claim("Location", "Kosice"));
+                }
+                if (model.Username.ToUpper() == "ALICE")
+                {
+                    claims.Add(new Claim("Location", "London"));
                 }
 
                 // Create claims identity and principle

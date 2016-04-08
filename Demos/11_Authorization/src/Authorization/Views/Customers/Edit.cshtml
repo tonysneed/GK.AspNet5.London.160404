@@ -1,0 +1,51 @@
+﻿@using System.Threading.Tasks
+@model Authentication.Models.CustomersViewModel
+@addTagHelper "*, Microsoft.AspNet.Mvc.TagHelpers"
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Customer</title>
+    <link href="~/libs/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/css/styles.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="page-header">
+        <h1>Edit Customer</h1>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <form asp-action="Update">
+                        <div asp-validation-summary="ValidationSummary.All"></div>
+
+                        <fieldset>
+                            <div class="form-group">
+                                <label asp-for="@Model.CustomerName">Customer Name</label>
+                                <span asp-validation-for="@Model.CustomerName" class="pull-right"></span>
+                                <input type="text" asp-for="@Model.CustomerName" class="form-control">
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="@Model.Location">Location</label>
+                                <span asp-validation-for="@Model.Location" class="pull-right"></span>
+                                <input type="text" asp-for="@Model.Location" class="form-control">
+                            </div>
+
+                            <div class="form-group">
+                                <button class="btn btn-primary">Update</button>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/libs/jquery/jquery.min.js"></script>
+    <script src="~/libs/jquery-validation/jquery.validate.min.js"></script>
+    <script src="~/libs/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/libs/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>
