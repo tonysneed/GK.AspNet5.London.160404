@@ -32,7 +32,7 @@
   - Run the Client, enter username and password, request the token
 
 5. Require authenticated users
-  + Use a new auth policy builder to create a policy
+  - Use a new auth policy builder to create a policy
     that requires users to be authenticated
 
     ```csharp
@@ -40,6 +40,15 @@
     var policy = new AuthorizationPolicyBuilder()
         .RequireAuthenticatedUser()
         .Build();
+    ```
+
+  - In the AddMvc options, add a global auth filter
+
+    ```csharp
+    services.AddMvc(options =>
+    {
+        options.Filters.Add(new AuthorizeFilter(policy));
+    });
     ```
 
   - Run the MvcWebApi project to use the unsecure api
