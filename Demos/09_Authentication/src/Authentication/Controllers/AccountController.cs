@@ -32,6 +32,7 @@ namespace Authentication.Controllers
                 if (model.Username != model.Password)
                 {
                     ModelState.AddModelError("", "Invalid username or password");
+                    return View("Login", model);
                 }
 
                 // Create subject and name claims
@@ -58,6 +59,16 @@ namespace Authentication.Controllers
             }
 
             return View("Login", model);
+        }
+
+        public async Task<IActionResult> Logout()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                await HttpContext.Authentication.SignOutAsync("Cookies");
+                return RedirectToAction("Logout");
+            }
+            return View("LoggedOut");
         }
     }
 }

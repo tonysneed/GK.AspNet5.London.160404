@@ -7,8 +7,8 @@
     ```csharp
     // Require authenticated users
     var policy = new AuthorizationPolicyBuilder()
-        .RequireAuthenticatedUser()
-        .Build();
+    .RequireAuthenticatedUser()
+    .Build();
     ```
 
   - In the AddMvc options, add a global auth filter
@@ -51,12 +51,12 @@
 
         public string ReturnUrl { get; set; }
         public IEnumerable<AuthenticationDescription> Providers { get; set; }
-
+    }
     ```
 
 5. Add an `AccountController` class to the Controllers folder
   - Add an `[AllowAnonymous]` attribute to the class
-  - Add a `Login` action accepting a returnUrl string parameter 
+  - Add a `Login` action accepting a returnUrl string parameter
 
     ```csharp
     public IActionResult Login(string returnUrl)
@@ -99,10 +99,10 @@
             if (model.Username != model.Password)
             {
                 ModelState.AddModelError("", "Invalid username or password");
+                return View("Login", model);
             }
         }
-
-        return View("Login", model);
+        return View("Login", model)
     }
     ```
 
@@ -116,22 +116,80 @@
     + You should be authenticated and redirected to the home page
 
     ```csharp
+    // Create subject and name claims
     var claims = new[]
     {
         new Claim("sub", model.Username),
         new Claim("name", model.Username),
     };
 
+    // Create claims identity and principle
     var ci = new ClaimsIdentity(claims, "password", "name", "role");
     var cp = new ClaimsPrincipal(ci);
 
+    // Sign in the user using the claims principle
     await HttpContext.Authentication.SignInAsync("Cookies", cp);
 
+    // Redirect to the return url if present,
+    // otherwise redirect to root
     if (model.ReturnUrl != null && Url.IsLocalUrl(model.ReturnUrl))
     {
         return Redirect(model.ReturnUrl);
     }
     return Redirect("~/");
-
     ```
-9. 
+
+9. Now you need implement logout functionality
+  - Add a Logout action to the Account controller
+    + If the user is authenticated, sign the user out
+      and redirect to the Logout action
+    + Of the user is not authenticated the return the LoggedOut view
+
+    ```csharp
+    public async Task<IActionResult> Logout()
+    {
+        if (User.Identity.IsAuthenticated)
+        {
+            await HttpContext.Authentication.SignOutAsync("Cookies");
+            return RedirectToAction("Logout");
+        }
+        return View("LoggedOut");
+    }
+    ```
+  - Add a LoggedOut view to the Account folder under Views
+
+    ```html
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Logged Out</title>
+    </head>
+    <body>
+        <h1>You are now logged out.</h1>
+    </body>
+    </html>
+    ```
+
+  - Add a link on the Home view which executes the Logout action
+    on the Account controller
+    + Use Mvc tag helpers
+    + Run the app and ensure you can both login and logout
+
+    ```html
+    @addTagHelper "*, Microsoft.AspNet.Mvc.TagHelpers"
+
+    <body>
+        <h1>Hello @Model.Name from MVC!</h1>
+        <a asp-controller="Account" asp-action="Logout"> Logout</a>
+    </body>
+    ```
+
+10. Lastly, you can add a global filter which defends against
+    cross-site token forgery
+    - Add a filter as an option in `services.AddMvc` in `Startup.ConfigureServices`
+
+    ```charp
+    options.Filters.Add(typeof(ValidateAntiForgeryTokenAttribute));
+    ```
+
+Happy coding!

@@ -1,4 +1,5 @@
 ﻿@model Authentication.Models.HomeViewModel
+@addTagHelper "*, Microsoft.AspNet.Mvc.TagHelpers"
 
 <!DOCTYPE html>
 <html>
@@ -7,5 +8,6 @@
 </head>
 <body>
     <h1>Hello @Model.Name from MVC!</h1>
+    <a asp-controller="Account" asp-action="Logout"> Logout</a>
 </body>
 </html>
